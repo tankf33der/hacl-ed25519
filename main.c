@@ -7,17 +7,11 @@
 
 #define ARRAY(name, size) \
     uint8_t name[size]; \
-    for(size_t i = 0; i < size; i++) name[i] = i;
+    for(size_t i = 0; i < size; i++) name[i] = 0;
 
 int main(void) {
-    ARRAY(hash, 64);
-    ARRAY(key,  32);
-    ARRAY(pub,  32);
-    ARRAY(in,   32);
+    ARRAY(zero, 64);
     
-	Hacl_Ed25519_secret_to_public(pub, key);
-    Hacl_Ed25519_sign(hash, key, 32, in);
-    Hacl_Ed25519_verify(pub, 32, in, hash);
-
+    Hacl_Ed25519_verify(zero, 0, zero, zero);
 	return 0;
 }
